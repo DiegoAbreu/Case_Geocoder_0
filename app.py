@@ -106,20 +106,31 @@ def consulta(x):
             #st.markdown("***")
             st.header('Onde e como foi utilizado o Portal Oi de Geocodificação nessa aplicação?')
             st.markdown("A Geocodificação de endereços foi aplicada em dois momentos nessa solução:")
-            st.markdown("**1 - ** Obter os pontos de latitude e longitude dos endereços das escolas. Para isso utilizamos o recurso de processamento em lote do Portal. Onde fazemos o uploadde nossa tabela de endereços e após o processamento recebemos um arquivo com seus respectivos valores de coordenadas.")
+            st.markdown("**1 - ** Obter os pontos de latitude e longitude dos endereços das Lojas Oi. Para isso utilizamos o recurso de processamento em lote do Portal. Onde fazemos o upload de nossa tabela de endereços e após o processamento recebemos um arquivo com seus respectivos valores de coordenadas.")
+            st.markdown("Função de processamento em lote do Portal Oi de Geocodificação:")
+            st.image('img/01.png', use_column_width=True)
+            st.markdown("Tabela inicial:")
             entrada_basica = recursos_df['Ponto']
             entrada_basica
+            st.markdown("Tabela com informações de coordenadas após o processamento:")
             entrada_latlng = recursos_df[['Ponto', 'Latitude', 'Longitude']]
             entrada_latlng
             st.markdown("Com essas informações de Latitude e Longititude agora disponíveis é possivel exibir os endereços graficamente como pontos em uma mapa.")
             st.plotly_chart(fig1)
             st.markdown("**2 - ** A segunda geocodificação ocorre sempre que um usuário pesquisa por um endereço. Para essa etapa utilizamos o recurso de consumo via API que nos permite geocodificar fora da Portal, ou seja dentro de nossa aplicação.")
+            st.markdown("Na opção de documentação, temos todos os recursos do Portal que podemos consumir via API. Nesse caso usamos o Geocode Get.")
+            st.image('img/02.png', use_column_width=True)
+            st.markdown("É necessário definir o formato em que você quer receber a geocodificação (json ou xml). Você também pode inserir uma consulta de teste para verificar como será a saída.")
+            st.image('img/03.png', use_column_width=True)
+            st.markdown("Após executar é exibido um script curl, juntamente com a URL de requisição para você adicionar ao código. Dentro do código Curl temos o token (em destaque) que permite o consumo via API. Logo abaixo, temos a amostra de como a consulta será enviada para sua aplicação. ")
+            st.image('img/04.png', use_column_width=True)
             st.markdown("Com a latitude e longitude do endereço pesquisado, podemos então calcular as distâncias entre os pontos, ordená-los e apresentar o resultado final.")
             st.plotly_chart(fig2)
-            
-            # Texto sobre valor
             st.markdown("***")
-            #st.header('O valor e as possibilidades desse tipo de Aplicação')
+            st.markdown("**Tecnologias utilizadas na criação deste caso de uso:**")
+            st.markdown("* Python - Linguagem de Programação;\n* Streamlit - Framework de Interface Visual;\n* GitHub - Hospedagem de código e arquivos;\n* Heroku - Ambiente de produção;\n* Portal Oi de Geocodificação - Conversão de endereços em coordenadas.")
+            st.markdown("Código do projeto disponível [aqui.](https://github.com/DiegoAbreu/Case_Geocoder_0 )")
+            st.markdown("***")
 
         return
 consulta(endereco_usuario)
